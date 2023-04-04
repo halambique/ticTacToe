@@ -20,4 +20,3 @@ public class Piece {
         Piece.piece = piece;
     }
 }
-}

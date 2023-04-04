@@ -1,5 +1,6 @@
 package com.halambique.tictactoe.model;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static com.halambique.tictactoe.model.Piece.piece;
@@ -25,28 +26,43 @@ public class Board {
             }
         }
 
-    public checkBoard(board){
 
-    }
-    
-    public <row, column> void placePiece(int row, int column){
+
+    public static void placePiece(Player player, char[][] board) {
         Scanner input = new Scanner(System.in);
-
-        System.out.print("Enter a column. 1, 2 or 3: ");
-        int x = input.nextInt()-1;
-        System.out.print("Enter a row. 1, 2 or 3: ");
-        int y = input.nextInt()-1;
+        int row = -1;
+        int column = -1;
 
         while (true) {
-            if (row < 1 || column < 1 || row > 3 || column > 3) {
-                System.out.println("You can't place a piece outside the board!");
-            } else if (board()[row][column] != '-') {
+            System.out.print(player.getName() + " Enter a column (1-3): ");
+            if (input.hasNextInt()) {
+                column = input.nextInt();
+            } else {
+                System.out.println("Invalid input, please enter a number.");
+                input.next();
+                continue;
+            }
+
+            System.out.print(player.getName() + " Enter a row (1-3): ");
+            if (input.hasNextInt()) {
+                row = input.nextInt();
+            } else {
+                System.out.println("Invalid input, please enter a number.");
+                input.next();
+                continue;
+            }
+
+            if (row < 1 || row > 3 || column < 1 || column > 3) {
+                System.out.println("Invalid input, please enter a number between 1 and 3.");
+            } else if (board[row - 1][column - 1] != '-') {
                 System.out.println("There is already a piece there!");
-            } else{
+            } else {
                 break;
             }
         }
-        board()[row][column] = Piece.getPiece();
+        board[row - 1][column - 1] = player.getPiece();
     }
+
+
 
 }

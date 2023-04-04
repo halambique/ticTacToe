@@ -1,21 +1,23 @@
 package com.halambique.tictactoe;
-import java.util.Scanner;
-
-import static com.halambique.tictactoe.model.Board.board;
-import static com.halambique.tictactoe.model.Board.drawBoard;
+import com.halambique.tictactoe.model.Board;
+import com.halambique.tictactoe.model.Player;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        // create a new board
+        char[][] board = Board.board();
 
-        System.out.print("Enter the name of PLAYER 1: ");
-        String p1 = input.nextLine();
+        // draw the board
+        Board.drawBoard(board);
 
-        System.out.print("Enter the name of PLAYER 2: ");
-        String p2 = input.nextLine();
+        // place a piece on the board
+        Player player1 = new Player();
+        Board.placePiece(player1, board);
 
-
-        char[][] board = board();
-        drawBoard(board);
+        // draw the board again to show the updated state
+        Board.drawBoard(board);
     }
+
+
+
 }
